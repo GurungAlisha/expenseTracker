@@ -11,3 +11,7 @@ form.addEventListener("submit", function (e) {
   li.innerText = `${text}: $${amount}`;
   list.appendChild(li);
 });
+li.innerHTML = `${text}: $${amount} <button class="delete-btn">x</button>`;
+li.querySelector(".delete-btn").addEventListener("click", function () {
+  li.remove();
+});
