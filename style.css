@@ -11,3 +11,11 @@ a { text-decoration: none; }
   margin: 5px 0;
   border-left: 5px solid;
 }
+
+li.classList.add(amount > 0 ? "plus" : "minus");
+.plus {
+  border-color: #2ecc71;
+}
+.minus {
+  border-color: #e74c3c;
+}
