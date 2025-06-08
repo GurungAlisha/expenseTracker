@@ -38,3 +38,8 @@ updateTotals();
 
 text.value = "";
 amount.value = "";
+
+if (text === "" || isNaN(amount)) {
+  alert("Please enter valid text and amount");
+  return;
+}
