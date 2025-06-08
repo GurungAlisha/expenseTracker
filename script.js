@@ -35,3 +35,6 @@ function updateTotals() {
 
 // Call this in form submit
 updateTotals();
+
+text.value = "";
+amount.value = "";
