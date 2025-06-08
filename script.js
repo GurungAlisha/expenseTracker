@@ -1,24 +1,43 @@
-document.getElementById("form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  alert("Transaction added!");
-});
+const form = document.getElementById("form");
+const textInput = document.getElementById("text");
+const amountInput = document.getElementById("amount");
 const list = document.getElementById("list");
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const text = document.getElementById("text").value;
-  const amount = +document.getElementById("amount").value;
-  const li = document.createElement("li");
-  li.innerText = `${text}: $${amount}`;
-  list.appendChild(li);
-});
-li.innerHTML = `${text}: $${amount} <button class="delete-btn">x</button>`;
-li.querySelector(".delete-btn").addEventListener("click", function () {
-  li.remove();
-});
-
 const total = document.getElementById("balance");
 const income = document.getElementById("money-plus");
 const expense = document.getElementById("money-minus");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const text = textInput.value.trim();
+  const amount = +amountInput.value;
+
+  if (text === "" || isNaN(amount)) {
+    alert("Please enter valid text and amount");
+    return;
+  }
+
+  addTransaction(text, amount);
+  updateTotals();
+  saveTransactions();
+
+  textInput.value = "";
+  amountInput.value = "";
+});
+
+function addTransaction(text, amount) {
+  const li = document.createElement("li");
+  li.innerHTML = `${text}: $${amount} <button class="delete-btn">x</button>`;
+  li.classList.add(amount > 0 ? "plus" : "minus");
+
+  li.querySelector(".delete-btn").addEventListener("click", function () {
+    li.remove();
+    updateTotals();
+    saveTransactions();
+  });
+
+  list.appendChild(li);
+}
 
 function updateTotals() {
   let amounts = Array.from(document.querySelectorAll("li"))
@@ -33,13 +52,28 @@ function updateTotals() {
   total.innerText = `$${incomeTotal + expenseTotal}`;
 }
 
-// Call this in form submit
-updateTotals();
-
-text.value = "";
-amount.value = "";
-
-if (text === "" || isNaN(amount)) {
-  alert("Please enter valid text and amount");
-  return;
+function saveTransactions() {
+  const transactions = Array.from(document.querySelectorAll("li")).map(li => li.innerHTML);
+  localStorage.setItem("transactions", JSON.stringify(transactions));
 }
+
+// Load saved transactions
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = JSON.parse(localStorage.getItem("transactions")) || [];
+  saved.forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html;
+
+    const amount = parseFloat(html.split("$")[1]);
+    li.classList.add(amount > 0 ? "plus" : "minus");
+
+    li.querySelector(".delete-btn").addEventListener("click", function () {
+      li.remove();
+      updateTotals();
+      saveTransactions();
+    });
+
+    list.appendChild(li);
+  });
+  updateTotals();
+});
