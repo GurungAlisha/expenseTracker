@@ -78,3 +78,11 @@ window.addEventListener("DOMContentLoaded", () => {
   updateTotals();
 });
 
+li.classList.add(amount > 0 ? "plus" : "minus");
+
+function saveTransactions() {
+  const transactions = Array.from(document.querySelectorAll("li")).map(li => li.innerText);
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+// Call after list update
+saveTransactions();
