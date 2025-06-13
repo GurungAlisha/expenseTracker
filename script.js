@@ -40,24 +40,25 @@ function addTransaction(text, amount) {
 }
 
 function updateTotals() {
-  let amounts = Array.from(document.querySelectorAll("li"))
-    .map(li => parseFloat(li.innerText.split("$")[1]))
-    .filter(n => !isNaN(n));
+  const amounts = Array.from(list.querySelectorAll("li"))
+    .map(li => {
+      const match = li.innerText.match(/\$(-?\d+(\.\d+)?)/);
+      return match ? parseFloat(match[1]) : 0;
+    });
 
-  let incomeTotal = amounts.filter(n => n > 0).reduce((a, b) => a + b, 0);
-  let expenseTotal = amounts.filter(n => n < 0).reduce((a, b) => a + b, 0);
+  const incomeTotal = amounts.filter(n => n > 0).reduce((a, b) => a + b, 0);
+  const expenseTotal = amounts.filter(n => n < 0).reduce((a, b) => a + b, 0);
 
-  income.innerText = `+$${incomeTotal}`;
-  expense.innerText = `-$${Math.abs(expenseTotal)}`;
-  total.innerText = `$${incomeTotal + expenseTotal}`;
+  income.innerText = `+$${incomeTotal.toFixed(2)}`;
+  expense.innerText = `-$${Math.abs(expenseTotal).toFixed(2)}`;
+  total.innerText = `$${(incomeTotal + expenseTotal).toFixed(2)}`;
 }
 
 function saveTransactions() {
-  const transactions = Array.from(document.querySelectorAll("li")).map(li => li.innerHTML);
+  const transactions = Array.from(list.querySelectorAll("li")).map(li => li.innerHTML);
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
 
-// Load saved transactions
 window.addEventListener("DOMContentLoaded", () => {
   const saved = JSON.parse(localStorage.getItem("transactions")) || [];
   saved.forEach(html => {
@@ -75,14 +76,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     list.appendChild(li);
   });
+
   updateTotals();
 });
-
-li.classList.add(amount > 0 ? "plus" : "minus");
-
-function saveTransactions() {
-  const transactions = Array.from(document.querySelectorAll("li")).map(li => li.innerText);
-  localStorage.setItem("transactions", JSON.stringify(transactions));
-}
-// Call after list update
-saveTransactions();

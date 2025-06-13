@@ -12,7 +12,6 @@ a { text-decoration: none; }
   border-left: 5px solid;
 }
 
-li.classList.add(amount > 0 ? "plus" : "minus");
 .plus {
   border-color: #2ecc71;
 }
