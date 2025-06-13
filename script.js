@@ -79,3 +79,52 @@ window.addEventListener("DOMContentLoaded", () => {
 
   updateTotals();
 });
+
+document.getElementById("filter").addEventListener("change", function () {
+  const value = this.value;
+  document.querySelectorAll("#list li").forEach(li => {
+    if (value === "all") {
+      li.style.display = "block";
+    } else if (value === "income") {
+      li.style.display = li.classList.contains("plus") ? "block" : "none";
+    } else {
+      li.style.display = li.classList.contains("minus") ? "block" : "none";
+    }
+  });
+});
+
+
+
+function drawChart() {
+  const ctx = document.getElementById("expenseChart");
+  if (!ctx) return;
+
+  const amounts = Array.from(document.querySelectorAll("li"))
+    .map(li => parseFloat(li.innerText.split("$")[1]))
+    .filter(n => !isNaN(n));
+
+  const incomeTotal = amounts.filter(n => n > 0).reduce((a, b) => a + b, 0);
+  const expenseTotal = amounts.filter(n => n < 0).reduce((a, b) => a + b, 0);
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Income", "Expense"],
+      datasets: [{
+        label: "Amount",
+        data: [incomeTotal, Math.abs(expenseTotal)],
+        backgroundColor: ["#2ecc71", "#e74c3c"]
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", drawChart);
