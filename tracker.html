@@ -7,26 +7,31 @@
 </head>
 <body>
   <nav>...</nav>
-  <h2>Expense Tracker</h2>
-  <form id="form">
-    <input type="text" id="text" placeholder="Enter transaction name" required />
-    <input type="number" id="amount" placeholder="Enter amount" required />
-    
-    <select id="type">
-      <option value="income">Income</option>
-      <option value="expense">Expense</option>
-    </select>
+  <div class="container">
+    <h2>Expense Tracker</h2>
 
-    <button type="submit">Add Transaction</button>
-  </form> 
- <label for="filter">Filter:</label>
-  <select id="filter">
-    <option value="all">All</option>
-    <option value="income">Income</option>
-    <option value="expense">Expense</option>
-  </select>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <form id="form">
+        <input type="text" id="text" placeholder="Enter transaction name" required />
+        <input type="number" id="amount" placeholder="Enter amount" required />
+        <select id="type">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <button type="submit">Add Transaction</button>
+      </form>
 
-  <ul id="list"></ul>
+      <select id="filter">
+        <option value="all">All</option>
+        <option value="income">Income Only</option>
+        <option value="expense">Expense Only</option>
+      </select>
+    </div>
+
+    <ul id="list"></ul>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>

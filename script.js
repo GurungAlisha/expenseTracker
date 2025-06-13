@@ -1,6 +1,7 @@
 const form = document.getElementById("form");
 const textInput = document.getElementById("text");
 const amountInput = document.getElementById("amount");
+const typeInput = document.getElementById("type");
 const list = document.getElementById("list");
 const total = document.getElementById("balance");
 const income = document.getElementById("money-plus");
@@ -19,12 +20,13 @@ form.addEventListener("submit", function (e) {
   }
 
   if (type === "expense") {
-    amount *= -1; // make amount negative
+    amount *= -1;
   }
 
   addTransaction(text, amount);
   updateTotals();
   saveTransactions();
+  drawChart();
 
   textInput.value = "";
   amountInput.value = "";
@@ -39,6 +41,7 @@ function addTransaction(text, amount) {
     li.remove();
     updateTotals();
     saveTransactions();
+    drawChart();
   });
 
   list.appendChild(li);
@@ -77,12 +80,14 @@ window.addEventListener("DOMContentLoaded", () => {
       li.remove();
       updateTotals();
       saveTransactions();
+      drawChart();
     });
 
     list.appendChild(li);
   });
 
   updateTotals();
+  drawChart();
 });
 
 document.getElementById("filter").addEventListener("change", function () {
@@ -98,8 +103,6 @@ document.getElementById("filter").addEventListener("change", function () {
   });
 });
 
-
-
 function drawChart() {
   const ctx = document.getElementById("expenseChart");
   if (!ctx) return;
@@ -111,7 +114,9 @@ function drawChart() {
   const incomeTotal = amounts.filter(n => n > 0).reduce((a, b) => a + b, 0);
   const expenseTotal = amounts.filter(n => n < 0).reduce((a, b) => a + b, 0);
 
-  new Chart(ctx, {
+  if (window.chartInstance) window.chartInstance.destroy();
+
+  window.chartInstance = new Chart(ctx, {
     type: "bar",
     data: {
       labels: ["Income", "Expense"],
@@ -131,5 +136,3 @@ function drawChart() {
     }
   });
 }
-
-window.addEventListener("DOMContentLoaded", drawChart);
