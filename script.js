@@ -10,11 +10,16 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const text = textInput.value.trim();
-  const amount = +amountInput.value;
+  let amount = +amountInput.value;
+  const type = typeInput.value;
 
   if (text === "" || isNaN(amount)) {
     alert("Please enter valid text and amount");
     return;
+  }
+
+  if (type === "expense") {
+    amount *= -1; // make amount negative
   }
 
   addTransaction(text, amount);
