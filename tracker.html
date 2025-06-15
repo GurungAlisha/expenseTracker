@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Tracker | Expense Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>...</nav>
+  <nav>
+    <!-- Optional: Add a nice pastel navigation bar -->
+  </nav>
+
   <div class="container">
-    <h2>Expense Tracker</h2>
+    <h2>💸 Expense Tracker</h2>
 
-    <div style="display: flex; flex-direction: column; gap: 10px;">
-      <form id="form">
-        <input type="text" id="text" placeholder="Enter transaction name" required />
-        <input type="number" id="amount" placeholder="Enter amount" required />
-        <select id="type">
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-        <button type="submit">Add Transaction</button>
-      </form>
+    <form id="form" class="form-group">
+      <input type="text" id="text" placeholder="Transaction name..." required />
+      <input type="number" id="amount" placeholder="Amount (e.g. -50 or 100)" required />
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button type="submit">➕ Add Transaction</button>
+    </form>
 
+    <div class="filter-container">
+      <label for="filter">Filter Transactions:</label>
       <select id="filter">
         <option value="all">All</option>
         <option value="income">Income Only</option>
@@ -33,5 +38,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>

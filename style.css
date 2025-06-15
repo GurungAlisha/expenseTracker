@@ -1,128 +1,138 @@
-/* Reset default spacing */
+/* === Global Reset === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background-color: #fff5fb;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #ffe9f3, #ffe3ec);
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
+  align-items: flex-start;
+  padding: 40px 20px;
+  color: #333;
 }
 
-/* Container Styling */
+/* === Main Container === */
 .container {
-  background: #ffffff;
+  background: #fff;
   width: 100%;
-  max-width: 500px;
-  border-radius: 18px;
-  padding: 30px 25px;
-  box-shadow: 0 8px 25px rgba(255, 192, 203, 0.3);
-  border: 2px dashed #ffcce5;
+  max-width: 480px;
+  border-radius: 20px;
+  padding: 35px 30px;
+  box-shadow: 0 12px 30px rgba(255, 192, 203, 0.35);
+  border: 2px solid #ffd6e8;
+  transition: transform 0.3s ease;
 }
 
-/* Heading */
+.container:hover {
+  transform: translateY(-5px);
+}
+
 h2 {
   text-align: center;
   margin-bottom: 25px;
-  font-size: 28px;
+  font-size: 30px;
   color: #d63384;
 }
 
-/* Form Styling */
-form {
+/* === Form Styling === */
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 input, select {
-  padding: 12px;
+  padding: 14px;
   border: 1.5px solid #f8c3dc;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 16px;
   background-color: #fff0f6;
-  transition: 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 input:focus, select:focus {
   outline: none;
-  border-color: #ff99c8;
+  border-color: #ff80b0;
+  background-color: #fff8fc;
 }
 
-/* Add Button */
+/* === Add Transaction Button === */
 button[type="submit"] {
-  background: #ff66a6;
+  background: linear-gradient(to right, #ff66a6, #ff3385);
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   border: none;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button[type="submit"]:hover {
-  background: #ff3385;
+  transform: scale(1.02);
 }
 
-/* Filter Dropdown */
+/* === Filter Section === */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
 #filter {
-  width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-size: 15px;
   border: 1.5px solid #f8c3dc;
   border-radius: 10px;
-  background-color: #fff0f6;
+  background-color: #fff7fc;
 }
 
-/* Transaction List */
+/* === Transaction List === */
 ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin-top: 20px;
 }
 
-/* Transaction Items */
 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffe6f0;
-  padding: 14px 15px;
-  margin-bottom: 12px;
+  background: #ffe6f0;
+  padding: 16px;
+  margin-bottom: 14px;
   border-left: 6px solid;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 15px;
   transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 192, 203, 0.15);
 }
 
-/* Income & Expense Colors */
 .plus {
-  color: #4caf50;
-  border-left-color: #8de19f;
+  color: #2ecc71;
+  border-left-color: #a2f3bd;
 }
 
 .minus {
   color: #e74c3c;
-  border-left-color: #ff9999;
+  border-left-color: #fba8a8;
 }
 
-/* Delete Button */
+/* === Delete Button === */
 .delete-btn {
   background-color: #ff4d6d;
   color: white;
   border: none;
   padding: 6px 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -132,14 +142,14 @@ li {
   background-color: #cc3a56;
 }
 
-/* Responsive */
+/* === Responsive === */
 @media (max-width: 600px) {
   .container {
-    padding: 20px 15px;
+    padding: 25px 20px;
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   input, select, button {
