@@ -1,21 +1,66 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Home | Expense Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker • Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="tracker.html">Tracker</a></li>
-    <li><a href="stats.html">Stats</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-  <h1>Welcome to Expense Tracker</h1>
-  <a href="tracker.html">Go to Tracker</a>
+  <nav class="nav">
+    <div class="nav__logo">💸 Tracker</div>
+    <ul class="nav__links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="tracker.html">Tracker</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Track Your Expenses Effortlessly</h1>
+      <p class="hero__subtitle">Stay on top of your budget with our cute pastel-pink tracker. Add, filter, and visualize in seconds.</p>
+      <a href="tracker.html" class="btn btn--primary">Get Started</a>
+    </div>
+    <div class="hero__image">
+      <!-- you could place an illustration or mockup here -->
+      <img src="your-illustration.png" alt="App preview" />
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <h2 class="section__title">Features</h2>
+    <div class="features__grid">
+      <div class="feature-card">
+        <h3>Add Transactions</h3>
+        <p>Easily log income or expense with a single form.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Filter &amp; View</h3>
+        <p>See only what matters: all, income only, or expense only.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Instant Insights</h3>
+        <p>Get color-coded lists and clear indicators at a glance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2 class="section__title">About Us</h2>
+    <p>We built Tracker to help you maintain financial wellness without overwhelm. Our pastel palette and intuitive UI keep budgeting fun and motivating.</p>
+  </section>
+
+  <footer id="contact" class="footer">
+    <p>© 2025 Tracker • Made with 💖</p>
+    <ul class="footer__links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Support</a></li>
+    </ul>
+  </footer>
 </body>
 </html>

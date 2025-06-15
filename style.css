@@ -5,154 +5,237 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(to right, #ffe9f3, #ffe3ec);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 20px;
+  background-color: #fff5fb;
   color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* === Navigation Bar === */
+.nav {
+  max-width: 580px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffe3ec;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(255, 192, 203, 0.25);
+}
+.nav:hover {
+  background: #ffd6e8;
+}
+.nav__logo {
+  font-size: 1.5rem;
+  color: #d63384;
+  font-weight: 600;
+}
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+}
+.nav__links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 30px;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+.nav__links a:hover {
+  background: #ff80b0;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.nav__links a.active {
+  background: #ff66a6;
+  color: #fff;
 }
 
 /* === Main Container === */
 .container {
+  max-width: 580px;
+  margin: 0 auto;
   background: #fff;
-  width: 100%;
-  max-width: 480px;
-  border-radius: 20px;
-  padding: 35px 30px;
-  box-shadow: 0 12px 30px rgba(255, 192, 203, 0.35);
   border: 2px solid #ffd6e8;
-  transition: transform 0.3s ease;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 12px 30px rgba(255, 192, 203, 0.35);
 }
-
-.container:hover {
-  transform: translateY(-5px);
-}
-
-h2 {
+.container h2 {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 30px;
+  margin-bottom: 20px;
+  font-size: 2rem;
   color: #d63384;
 }
 
-/* === Form Styling === */
-.form-group {
+/* === Income / Expense / Balance Summary === */
+.inc-exp-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.inc-exp-container > div {
+  flex: 1;
+  background: #fff0f6;
+  border: 1.5px solid #f8c3dc;
+  border-radius: 12px;
+  padding: 15px 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(255, 192, 203, 0.15);
+}
+.inc-exp-container h4 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
+}
+.inc-exp-container p,
+.inc-exp-container #balance {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #d63384;
+}
+
+/* === Add Transaction Form === */
+#form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   margin-bottom: 25px;
 }
-
-input, select {
-  padding: 14px;
+#form input,
+#form select {
+  padding: 12px;
+  font-size: 1rem;
   border: 1.5px solid #f8c3dc;
   border-radius: 12px;
-  font-size: 16px;
-  background-color: #fff0f6;
-  transition: all 0.25s ease;
+  background: #fff0f6;
+  transition: all 0.25s;
 }
-
-input:focus, select:focus {
+#form input:focus,
+#form select:focus {
   outline: none;
   border-color: #ff80b0;
-  background-color: #fff8fc;
+  background: #fff8fc;
 }
-
-/* === Add Transaction Button === */
-button[type="submit"] {
-  background: linear-gradient(to right, #ff66a6, #ff3385);
-  color: white;
-  font-weight: 600;
-  border: none;
+#form button {
   padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(to right, #ff66a6, #ff3385);
+  border: none;
   border-radius: 12px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s;
 }
-
-button[type="submit"]:hover {
+#form button:hover {
   transform: scale(1.02);
 }
 
-/* === Filter Section === */
+/* === Filter Dropdown === */
 .filter-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   margin-bottom: 20px;
 }
-
-#filter {
+.filter-container select {
+  width: 100%;
   padding: 12px;
-  font-size: 15px;
+  font-size: 1rem;
   border: 1.5px solid #f8c3dc;
   border-radius: 10px;
-  background-color: #fff7fc;
+  background: #fff7fc;
+  transition: border-color 0.25s, background 0.25s;
+}
+.filter-container select:focus {
+  outline: none;
+  border-color: #ff80b0;
+  background: #fff8fc;
+}
+
+/* === Save Button === */
+.save-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.save-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d63384;
+  background: #fff0f6;
+  border: 1.5px solid #f8c3dc;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.save-btn:hover {
+  background: #ffe3ec;
+  transform: translateY(-2px);
 }
 
 /* === Transaction List === */
-ul {
+#list {
   list-style: none;
-  padding: 0;
   margin-top: 20px;
+  padding: 0;
 }
-
-li {
+#list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #ffe6f0;
-  padding: 16px;
+  padding: 14px 16px;
   margin-bottom: 14px;
   border-left: 6px solid;
   border-radius: 14px;
-  font-size: 15px;
-  transition: 0.3s ease;
+  font-size: 1rem;
   box-shadow: 0 4px 12px rgba(255, 192, 203, 0.15);
+  transition: background 0.3s;
 }
-
-.plus {
-  color: #2ecc71;
+#list li.plus {
   border-left-color: #a2f3bd;
 }
-
-.minus {
-  color: #e74c3c;
+#list li.minus {
   border-left-color: #fba8a8;
 }
-
-/* === Delete Button === */
+#list li:hover {
+  background: #ffe0ec;
+}
 .delete-btn {
   background-color: #ff4d6d;
-  color: white;
+  color: #fff;
   border: none;
   padding: 6px 10px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
-
 .delete-btn:hover {
   background-color: #cc3a56;
 }
 
 /* === Responsive === */
 @media (max-width: 600px) {
+  .inc-exp-container {
+    flex-direction: column;
+  }
   .container {
-    padding: 25px 20px;
+    padding: 20px;
   }
-
-  h2 {
-    font-size: 26px;
-  }
-
-  input, select, button {
-    font-size: 14px;
+  #form,
+  .filter-container,
+  .save-container {
+    gap: 12px;
   }
 }

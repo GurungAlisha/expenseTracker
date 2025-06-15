@@ -1,12 +1,37 @@
+<!-- chart.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Expense Chart</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tracker • Expense Chart</title>
+
+  <!-- your same font & CSS -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h2>Income vs Expense Chart</h2>
-  <canvas id="expenseChart" width="400" height="400"></canvas>
-  <script src="script.js"></script>
+  <nav class="nav">
+    <div class="nav__logo">💸 Tracker</div>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tracker.html">Tracker</a></li>
+      <li><a href="stats.html" class="active">Chart</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="container chart-container">
+    <h2>📊 Expense Chart</h2>
+    <canvas id="expenseChart"></canvas>
+  </div>
+
+  <script src="stats.js"></script>
 </body>
 </html>

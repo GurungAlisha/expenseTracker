@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tracker | Expense Tracker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Expense Tracker</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js if you plan to add charts later -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 </head>
 <body>
-  <nav>
-    <!-- Optional: Add a nice pastel navigation bar -->
+  <nav class="nav">
+    <div class="nav__logo">💸 Tracker</div>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tracker.html" class="active">Tracker</a></li>
+      <li><a href="chart.html">Chart</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
   </nav>
 
   <div class="container">
-    <h2>💸 Expense Tracker</h2>
+    <h2>💵 Expense Tracker</h2>
 
-    <form id="form" class="form-group">
-      <input type="text" id="text" placeholder="Transaction name..." required />
-      <input type="number" id="amount" placeholder="Amount (e.g. -50 or 100)" required />
+    <!-- Summary -->
+    <div class="inc-exp-container">
+      <div>
+        <h4>Income</h4>
+        <p id="money-plus">+$0.00</p>
+      </div>
+      <div>
+        <h4>Expense</h4>
+        <p id="money-minus">-$0.00</p>
+      </div>
+      <div>
+        <h4>Balance</h4>
+        <h1 id="balance">$0.00</h1>
+      </div>
+    </div>
+
+    <!-- Add Transaction -->
+    <form id="form">
+      <input type="text" id="text" placeholder="Description..." required />
+      <input type="number" id="amount" placeholder="Amount (e.g. 100 or -50)" required />
       <select id="type">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
@@ -24,8 +53,8 @@
       <button type="submit">➕ Add Transaction</button>
     </form>
 
+    <!-- Filter -->
     <div class="filter-container">
-      <label for="filter">Filter Transactions:</label>
       <select id="filter">
         <option value="all">All</option>
         <option value="income">Income Only</option>
@@ -33,6 +62,12 @@
       </select>
     </div>
 
+    <!-- Save Button -->
+    <div class="save-container">
+      <button id="save-btn" class="save-btn">💾 Save Transactions</button>
+    </div>
+
+    <!-- Transactions List -->
     <ul id="list"></ul>
   </div>
 
