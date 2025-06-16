@@ -100,9 +100,10 @@ body {
   margin-top: 30px;
 }
 .hero__image img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 450px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(255, 192, 203, 0.3);
+  box-shadow: 0 12px 28px rgba(255, 192, 203, 0.3);
 }
 
 /* === Section Titles === */
