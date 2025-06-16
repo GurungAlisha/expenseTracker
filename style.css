@@ -239,3 +239,28 @@ body {
     gap: 12px;
   }
 }
+
+.about-section {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  background: #fff7fa;
+  border: 1.5px solid #ffd2e4;
+  padding: 24px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-shadow: 0 6px 18px rgba(255, 192, 203, 0.15);
+}
+.about-section ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+.about-section ul li {
+  margin-bottom: 6px;
+}
+.about-section code {
+  background: #ffe9f0;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}

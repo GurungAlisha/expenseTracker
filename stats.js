@@ -1,39 +1,64 @@
-// chart.js
+document.addEventListener("DOMContentLoaded", () => {
+  const ctx = document.getElementById("expenseChart").getContext("2d");
+  const raw = localStorage.getItem("transactions");
 
-let chartInstance;
+  if (!raw) {
+    alert("No data found. Add some transactions first!");
+    return;
+  }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const saved = JSON.parse(localStorage.getItem("transactions")) || [];
+  try {
+    const transactions = JSON.parse(raw);
 
-  // extract numbers from each saved li-HTML
-  const amounts = saved
-    .map(html => {
-      const m = html.match(/\$(-?\d+(\.\d+)?)/);
-      return m ? parseFloat(m[1]) : 0;
+    // Validate format
+    if (!Array.isArray(transactions) || transactions.some(tx => typeof tx.amount !== "number")) {
+      throw new Error("Invalid transaction data.");
+    }
+
+    const income = transactions
+      .filter(tx => tx.amount > 0)
+      .reduce((sum, tx) => sum + tx.amount, 0);
+
+    const expense = transactions
+      .filter(tx => tx.amount < 0)
+      .reduce((sum, tx) => sum + tx.amount, 0);
+
+    const chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Income", "Expense"],
+        datasets: [{
+          label: "Amount",
+          data: [income, Math.abs(expense)],
+          backgroundColor: ["#a2f3bd", "#fba8a8"],
+          borderRadius: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => `$${ctx.raw.toFixed(2)}`
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: val => `$${val}`
+            }
+          }
+        }
+      }
     });
 
-  const incomeTotal  = amounts.filter(n => n > 0).reduce((a,b)=>a+b,0);
-  const expenseTotal = Math.abs(amounts.filter(n => n < 0).reduce((a,b)=>a+b,0));
-
-  // destroy old chart if exists
-  if (chartInstance) chartInstance.destroy();
-
-  const ctx = document.getElementById("expenseChart").getContext("2d");
-  chartInstance = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Income", "Expense"],
-      datasets: [{
-        label: "Amount",
-        data: [incomeTotal, expenseTotal],
-        backgroundColor: ["#2ecc71", "#e74c3c"]
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { beginAtZero: true }
-      }
-    }
-  });
+  } catch (err) {
+    console.error("Chart rendering failed:", err);
+    alert("Failed to load chart. Try resetting transactions.");
+  }
 });

@@ -1,19 +1,10 @@
-<!-- chart.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tracker • Expense Chart</title>
-
-  <!-- your same font & CSS -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
+  <title>Statistics • Tracker</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -23,13 +14,13 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="tracker.html">Tracker</a></li>
       <li><a href="stats.html" class="active">Chart</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <div class="container chart-container">
-    <h2>📊 Expense Chart</h2>
-    <canvas id="expenseChart"></canvas>
+  <div class="container">
+    <h2>📊 Expense Statistics</h2>
+    <canvas id="expenseChart" height="300"></canvas>
   </div>
 
   <script src="stats.js"></script>
